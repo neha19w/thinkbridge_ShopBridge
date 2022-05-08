@@ -1,0 +1,54 @@
+<h3>Create Item In Inventary</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+
+    <div [hidden]="submitted" style="width: 400px;">
+      <form name="itemsaveform" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="item_name">Item Name</label>
+          <input type="text" class="form-control" name="item_name" [(ngModel)]="item.item_name" #item_name="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && item_name.invalid }" required />
+          <div *ngIf="f.submitted && item_name.invalid" class="invalid-feedback">
+            <div *ngIf="item_name.errors.required">Item Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="item_price">Item Price</label>
+          <input type="number" class="form-control" name="item_price" [(ngModel)]="item.item_price"
+            #item_price="ngModel" [ngClass]="{ 'is-invalid': f.submitted && item_price.invalid }" required />
+          <div *ngIf="f.submitted && item_price.invalid" class="invalid-feedback">
+            <div *ngIf="item_price.errors.required">Item Price is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="item_details"> Item Desciption</label>
+          <input type="text" class="form-control" name="item_details" [(ngModel)]="item.item_details"
+            #item_details="ngModel" [ngClass]="{ 'is-invalid': f.submitted && item_details.invalid }" required
+            minlength="6" />
+          <div *ngIf="f.submitted && item_details.invalid" class="invalid-feedback">
+            <div *ngIf="item_details.errors.required">Description is required</div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div [hidden]="!submitted">
+      <h4>Item Added SuccessFully!</h4>
+      <button (click)="addItemForm()" class='btn btn-primary'>Add More Item</button>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
